@@ -13,15 +13,15 @@ class ErrorBoundary extends Component {
   }
 
   componentDidUpdate() {
-    if (this.state.redirect) {
-      return <Navigate to="/" />;
-    } else if (this.state.hasError) {
+    if (this.state.hasError) {
       setTimeout(() => this.setState({ redirect: true }), 5000);
     }
   }
 
   render() {
-    if (this.state.hasError) {
+    if (this.state.redirect) {
+      return <Navigate to="/" />;
+    } else if (this.state.hasError) {
       return (
         <h2>
           There was an error with this listing. <Link to="/">Click here</Link>{" "}
